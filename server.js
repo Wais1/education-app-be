@@ -14,8 +14,9 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-// Sets the API endpoint across app
+// Sets the API routes and logic ƒor goals and users
 app.use('/api/goals', require('./routes/goalRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
 
 // Override the default Express error handler with our own
 // Shows error stack if in dev, else do not show in production
