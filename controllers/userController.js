@@ -75,13 +75,16 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
     // Has access to req.user.id because user is set in middleware from authentication token
-    const {_id, name, email} = await User.findById(req.user.id)
+    //  typical example: however dont need to do this since we already got the user
+    // const {_id, name, email} = await User.findById(req.user.id)
+    // Might need this if only stores token in user
+    // res.status(200).json({
+    //     id: req.user._id,
+    //     name,
+    //     email,
+    // })
 
-    res.status(200).json({
-        id: _id,
-        name,
-        email,
-    })
+    req.status(200).json(req.user)
 })
 
 // Generate JWT
