@@ -58,6 +58,7 @@ const loginUser = asyncHandler(async (req, res) => {
     // Compare password in body with hashed password
     if(user && (await bcrypt.compare(password, user.password))) {
         res.json({
+            // Can delete id, name, email and keep token. It is a choice
             _id: user.id,
             name: user.name,
             email: user.email,
