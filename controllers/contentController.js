@@ -30,10 +30,10 @@ const uploadContent =  asyncHandler(async (req, res) => {
     }
 
     // Create goal using request body. Uses user.id associated with each goal to fetch them
-    // const goal = await Goal.create({
-    //     text: req.body.text,
-    //     user: req.user.id,
-    // })
+    const goal = await Goal.create({
+        text: req.body.text,
+        user: req.user.id,
+    })
 
     res.status(200).json(goal)
 })
