@@ -18,9 +18,10 @@ app.use(express.urlencoded({ extended: false }))
 // Sets CORS responses
 app.use(cors())
 
-// Sets the API routes and logic ƒor goals and users
+// Sets the API routes and logic ƒor content, goals and users
 app.use('/api/goals', require('./routes/goalRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/content', require('./routes/contentRoutes'))
 
 // Override the default Express error handler with our own
 // Shows error stack if in dev, else do not show in production
