@@ -14,16 +14,26 @@ const getContent = asyncHandler(async (req, res) => {
     
     // const content = await Goal.find({ user: req.user.id })
     const rand = Math.floor(Math.random() * 10);
-    const content = rand > 5? 'https://www.youtube.com/embed/askbjJx-BQg' : 'https://www.youtube.com/embed/EKvHQc3QEow'
+    // const content = rand > 5? 'https://www.youtube.com/embed/askbjJx-BQg' : 'https://www.youtube.com/embed/EKvHQc3QEow'
+
+    const content = await Content.find()
+
+    // Pull from db and return
+    // Content.find...
 
     // Return goals
-    res.status(200).json(content)
+    console.log(content)
+
+    var contentItem = content[Math.floor(Math.random() * content.length)].text;
+    // console.log(contentItem)
+  
+    res.status(200).json(contentItem)
 })
 
 // @desc    Upload content
-// @route   POST /api/goals
+// @route   POST /api/content
 // @access  Private
-const uploadContent =  asyncHandler(async (req, res) => {
+const uploadContent = asyncHandler(async (req, res) => {
     // Check if request has no body data, return 400 error.
     if(!req.body.text) {
         res.status(400)
@@ -31,12 +41,11 @@ const uploadContent =  asyncHandler(async (req, res) => {
     }
 
     // Create goal using request body. Uses user.id associated with each goal to fetch them
-    const goal = await Goal.create({
+    const content = await Content.create({
         text: req.body.text,
-        user: req.user.id,
     })
 
-    res.status(200).json(goal)
+    res.status(200).json(content)
 })
 
 // @desc    Update goal
