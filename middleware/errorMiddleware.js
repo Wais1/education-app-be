@@ -1,4 +1,4 @@
-const { restart } = require("nodemon")
+// const { restart } = require("nodemon")
 
 const errorHandler = (err, req, res, next) => {
     // If statuscode available then use it, else assign 500
